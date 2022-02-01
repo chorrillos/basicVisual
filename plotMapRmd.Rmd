@@ -1,0 +1,27 @@
+
+```{r}
+link='https://github.com/chorrillos/basicVisual/raw/main/clasifIDH.gpkg'
+library(sf)
+
+idhmap=read_sf(link)
+names(idhmap)
+```
+```{r}
+library(leaflet)
+
+zgmap=idhmap[idhmap$ZG=="ZG",]
+paletaEI <- colorFactor(palette = 'YlGn', idhmap$Equal.Interval)
+
+leaflet() %>%
+  addPolygons(data = idhmap,stroke = FALSE,
+              smoothFactor = 0.2,
+              fillOpacity = 1,
+    color = ~paletaEI(Equal.Interval),group = "all")%>%addPolygons(data=zgmap,group="zg",stroke = T,color='red',weight = 2,fill=FALSE)%>%
+addLayersControl(
+    
+    overlayGroups = c("all", "zg"),
+    options = layersControlOptions(collapsed = FALSE)
+  )
+
+```
+
