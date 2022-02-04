@@ -10,15 +10,23 @@ names(idhmap)
 library(leaflet)
 
 zgmap=idhmap[idhmap$ZG=="ZG",]
-paletaEI <- colorFactor(palette = 'YlGn', idhmap$Equal.Interval)
+paletaEI <- colorFactor(palette = 'YlGn',
+                        idhmap$Equal.Interval)
 
 leaflet() %>%
-  addPolygons(data = idhmap,stroke = FALSE,
+  addPolygons(data = idhmap,
+              stroke = FALSE,
               smoothFactor = 0.2,
               fillOpacity = 1,
-    color = ~paletaEI(Equal.Interval),group = "all")%>%addPolygons(data=zgmap,group="zg",stroke = T,color='red',weight = 2,fill=FALSE)%>%
-addLayersControl(
-    
+              color = ~paletaEI(Equal.Interval),
+              group ="all")%>%
+  addPolygons(data=zgmap,
+              stroke = T,
+              color='red',
+              weight = 2,
+              fill=FALSE,
+              group="zg")%>%
+  addLayersControl(
     overlayGroups = c("all", "zg"),
     options = layersControlOptions(collapsed = FALSE)
   )

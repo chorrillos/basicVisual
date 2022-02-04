@@ -5,8 +5,8 @@ account: jmagallanes
 server: beta.rstudioconnect.com
 hostUrl: https://beta.rstudioconnect.com/__api__
 appId: 17694
-bundleId: 80761
+bundleId: 81324
 url: https://beta.rstudioconnect.com/content/c8ec36da-cd24-429e-92f4-f2da7d75080d/
-when: 1643706313.59667
+when: 1643961055.91822
 asMultiple: FALSE
 asStatic: TRUE
