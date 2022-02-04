@@ -8,8 +8,17 @@ names(idhmap)
 ```
 ```{r}
 library(leaflet)
-
+library(htmltools)
 zgmap=idhmap[idhmap$ZG=="ZG",]
+##
+labels <- sprintf(
+  "<strong>%s</strong><br/>%s",
+  zgmap$DEPARTAMEN, zgmap$DISTRITO
+) %>% lapply(htmltools::HTML)
+###
+
+
+
 paletaEI <- colorFactor(palette = 'YlGn',
                         idhmap$Equal.Interval)
 
@@ -25,6 +34,7 @@ leaflet() %>%
               color='red',
               weight = 2,
               fill=FALSE,
+              label = labels,
               group="zg")%>%
   addLayersControl(
     overlayGroups = c("all", "zg"),
